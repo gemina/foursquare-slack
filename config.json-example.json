@@ -1,0 +1,6 @@
+{
+	"fsqURL":   "https://api.foursquare.com/v2/checkins/recent?limit=1&oauth_token=%s&v=20170712",
+	"OAuth":    "",
+	"SlackURL": "",
+	"IDs":		["1234", "5678"],
+}
