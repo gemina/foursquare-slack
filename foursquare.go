@@ -71,14 +71,5 @@ func getCheckins() {
         return
     }
 
-    checkinText := fmt.Sprintf("%s %s\n%s\n%s, %s [<http://maps.google.com/?q=%.6f,%.6f|map>]",
-        checkIn.Response.Recent[0].User.FirstName,
-        checkIn.Response.Recent[0].User.LastName,
-        checkIn.Response.Recent[0].Venue.Name,
-        checkIn.Response.Recent[0].Venue.Location.City,
-        checkIn.Response.Recent[0].Venue.Location.Country,
-        checkIn.Response.Recent[0].Venue.Location.Lat,
-        checkIn.Response.Recent[0].Venue.Location.Lng)
-
-    go postToSlack(checkinText)
+    go postToSlack(checkIn)
 }
