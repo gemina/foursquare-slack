@@ -15,7 +15,8 @@ type CheckIn struct {
 	} `json:"meta"`
 	Response struct {
 		Recent []struct {
-			ID   string `json:"id"`
+			ID      string `json:"id"`
+			Shout   string `json:"shout"`
 			User struct {
 				ID        string `json:"id"`
 				FirstName string `json:"firstName"`
