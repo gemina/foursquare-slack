@@ -49,8 +49,7 @@ func postToSlack(checkIn *CheckIn) {
 		checkIn.Response.Recent[0].Venue.Location.City,
 		checkIn.Response.Recent[0].Venue.Location.Country,
 		checkIn.Response.Recent[0].Venue.Location.Lat,
-		checkIn.Response.Recent[0].Venue.Location.Lng,
-		checkIn.Response.Recent[0].Shout)
+		checkIn.Response.Recent[0].Venue.Location.Lng)
 
 	fallback := fmt.Sprintf("Check-in: %s %s @ %s [%s], (%s, %s) [<http://maps.google.com/?q=%.6f,%.6f|map>]",
 		checkIn.Response.Recent[0].User.FirstName,
