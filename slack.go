@@ -41,22 +41,28 @@ type Message struct {
 
 func postToSlack(checkIn *CheckIn) {
 
-	text := fmt.Sprintf("%s %s\n%s [%s]\n%s, %s [<http://maps.google.com/?q=%.6f,%.6f|map>]",
+	if len(checkIn.Response.Recent[0].Venue.Location.City) < 1 {
+		city := ""
+	} else {
+		city := checkIn.Response.Recent[0].Venue.Location.City+", "
+	}
+	
+	text := fmt.Sprintf("%s %s\n%s [%s]\n%s [<http://maps.google.com/?q=%.6f,%.6f|map>]",
 		checkIn.Response.Recent[0].User.FirstName,
 		checkIn.Response.Recent[0].User.LastName,
 		checkIn.Response.Recent[0].Venue.Name,
 		checkIn.Response.Recent[0].Venue.Categories[0].Name,
-		checkIn.Response.Recent[0].Venue.Location.City,
+		city,
 		checkIn.Response.Recent[0].Venue.Location.Country,
 		checkIn.Response.Recent[0].Venue.Location.Lat,
 		checkIn.Response.Recent[0].Venue.Location.Lng)
 
-	fallback := fmt.Sprintf("Check-in: %s %s @ %s [%s], (%s, %s) [<http://maps.google.com/?q=%.6f,%.6f|map>]",
+	fallback := fmt.Sprintf("Check-in: %s %s @ %s [%s], (%s%s) [<http://maps.google.com/?q=%.6f,%.6f|map>]",
 		checkIn.Response.Recent[0].User.FirstName,
 		checkIn.Response.Recent[0].User.LastName,
 		checkIn.Response.Recent[0].Venue.Name,
 		checkIn.Response.Recent[0].Venue.Categories[0].Name,
-		checkIn.Response.Recent[0].Venue.Location.City,
+		city,
 		checkIn.Response.Recent[0].Venue.Location.Country,
 		checkIn.Response.Recent[0].Venue.Location.Lat,
 		checkIn.Response.Recent[0].Venue.Location.Lng)
