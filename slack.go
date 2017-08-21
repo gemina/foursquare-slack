@@ -49,7 +49,7 @@ func postToSlack(checkIn *CheckIn) {
 	}
 	
 	if len(checkIn.Response.Recent[0].Venue.Location.City) > 0 {
-		city = checkIn.Response.Recent[0].Venue.Location.City+", "
+		city = fmt.Sprintf("%s, ", checkIn.Response.Recent[0].Venue.Location.City)
 	}
 	
 	text := fmt.Sprintf("%s %s%s\n%s [%s]\n%s%s [<http://maps.google.com/?q=%.6f,%.6f|map>]",
