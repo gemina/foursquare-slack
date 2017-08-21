@@ -41,16 +41,15 @@ type Message struct {
 
 func postToSlack(checkIn *CheckIn) {
 
-	if len(checkIn.Response.Recent[0].Venue.Location.City) < 1 {
-		city := ""
-	} else {
-		city := checkIn.Response.Recent[0].Venue.Location.City+", "
-	}
+	shout := ""
+	city := ""
 	
 	if len(checkIn.Response.Recent[0].Shout) > 0 {
-		shout := fmt.Sprintf(" - %s ", checkIn.Response.Recent[0].Shout)
-	} else {
-		shout := ""
+		shout = fmt.Sprintf(" - %s ", checkIn.Response.Recent[0].Shout)
+	}
+	
+	if len(checkIn.Response.Recent[0].Venue.Location.City) > 0 {
+		city = checkIn.Response.Recent[0].Venue.Location.City+", "
 	}
 	
 	text := fmt.Sprintf("%s %s%s\n%s [%s]\n%s [<http://maps.google.com/?q=%.6f,%.6f|map>]",
